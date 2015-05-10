@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>팀 멤버 등록</title>
+</head>
+
+<body>
+	<h2>팀멤버 등록</h2>
+	
+	<form method="POST" action="/AddMemberServlet">
+		<table border="1" bgcolor="lightyellow" cellpadding="5">
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<td>학번</td>
+				<td><input type="text" name="id"></td>
+			</tr>
+			<tr>
+				<td>메일주소</td>
+				<td><input type="text" name="email"></td>
+			</tr>
+			<tr>
+				<td>카카오톡아이디</td>
+				<td><input type="text" name="kakaoid"></td>
+			</tr>
+			<tr>
+				<td>팀장여부</td>
+				<td><input type="checkbox" name="chk_info" value="ok"></td>
+			</tr>
+			<tr>
+				<td>Git ID</td>
+				<td><input type="text" name="gitid"></td>
+			</tr>
+			<tr>
+				<td colspan="4" align="center"><input type="SUBMIT"></td>
+			</tr>
+		</table>
+	</form>
+	<a href="index.html">뒤로가기</a>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+
+	<servlet>
+		<servlet-name>AddMember</servlet-name>
+		<servlet-class>kr.ac.shinhan.csp.AddMemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddMember</servlet-name>
+		<url-pattern>/AddMemberServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RetrieveMember</servlet-name>
+		<servlet-class>kr.ac.shinhan.csp.RetrieveMemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RetrieveMember</servlet-name>
+		<url-pattern>/RetrieveMemberServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ReadMember</servlet-name>
+		<servlet-class>kr.ac.shinhan.csp.ReadMemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadMember</servlet-name>
+		<url-pattern>/ReadMemberServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Delete</servlet-name>
+		<servlet-class>kr.ac.shinhan.csp.Delete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Delete</servlet-name>
+		<url-pattern>/delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Update</servlet-name>
+		<servlet-class>kr.ac.shinhan.csp.Update</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Update</servlet-name>
+		<url-pattern>/update</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<servlet> 
+		<servlet-name>SignUp</servlet-name> 
+ 		<servlet-class>kr.ac.shinhan.csp.SignUpServlet</servlet-class> 
+ 	</servlet> 
+ 	<servlet-mapping> 
+ 		<servlet-name>SignUp</servlet-name> 
+ 		<url-pattern>/signup</url-pattern> 
+ 	</servlet-mapping> 
+	 
+ 	<servlet> 
+		<servlet-name>Login</servlet-name> 
+ 		<servlet-class>kr.ac.shinhan.csp.LoginServlet</servlet-class> 
+ 	</servlet> 
+ 	<servlet-mapping> 
+ 		<servlet-name>Login</servlet-name> 
+		<url-pattern>/login</url-pattern> 
+ 	</servlet-mapping> 
+ 	
+ 	<servlet> 
+		<servlet-name>Entry</servlet-name> 
+ 		<servlet-class>kr.ac.shinhan.csp.Entry</servlet-class> 
+ 	</servlet> 
+ 	<servlet-mapping> 
+ 		<servlet-name>Entry</servlet-name> 
+		<url-pattern>/entry</url-pattern> 
+ 	</servlet-mapping> 
+ 	
+ 	
+ 	<servlet> 
+		<servlet-name>Logout</servlet-name> 
+ 		<servlet-class>kr.ac.shinhan.csp.Logout</servlet-class> 
+ 	</servlet> 
+ 	<servlet-mapping> 
+ 		<servlet-name>Logout</servlet-name> 
+		<url-pattern>/logout</url-pattern> 
+ 	</servlet-mapping> 
+ 	
+ 	
+ 	
+	
+
+ 	
+ 	
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+</web-app> 
