@@ -18,17 +18,16 @@ public class Logout extends HttpServlet {
 		resp.setContentType("text/plain;charset=EUC-KR");
 
 		Long key = null;
-		HttpSession session = req.getSession(false);
+		HttpSession s = req.getSession(false);
 
-		if (session == null) {
+		if (s == null) {
 			resp.getWriter().println("");
 		}
 		
 		
 		else 
 		{
-			key = (Long) session.getAttribute("check_key");
-			//autoLoginKey = (Long) session.getAttribute("auto_login_key");
+			key = (Long) s.getAttribute("check_key");
 			if (key != null) 
 			{
 
@@ -41,16 +40,16 @@ public class Logout extends HttpServlet {
 						c.setValue(null);
 						c.setMaxAge(0);
 						resp.addCookie(c);
+						
 					}
 				}
 
 				PersistenceManager pm = MemberManager.dogetManager();
 				UserLoginToken usertok = pm.getObjectById(UserLoginToken.class, key);
-				pm.makePersistent(usertok);
 				pm.deletePersistent(usertok);
 
-				session.setMaxInactiveInterval(0);
-				session.invalidate();
+				/*session.setMaxInactiveInterval(0);
+				session.invalidate();*/
 
 			}
 
