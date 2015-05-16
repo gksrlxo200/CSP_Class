@@ -17,30 +17,51 @@ public class Entry extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 
-		
+		String id = null;
 		String token = null;
-		Cookie[] cookies = req.getCookies();
+		boolean success = false;
+		
+		
 		Query qry2 = MemberManager.dogetManager()
 				.newQuery(UserLoginToken.class);
-
 		List<UserLoginToken> ulog = (List<UserLoginToken>) qry2.execute();
-		qry2.setFilter("userid == idParam");
-		qry2.declareParameters("String idParam");
-
-		UserLoginToken ulog2 = ulog.get(0);
-		String tokid = ulog2.getUserid();
-
-		if (tokid == null) {
+		
+		
+		Cookie[] cookies = req.getCookies();
+		
+		if (cookies == null || cookies.length == 0) {
 			resp.sendRedirect("/login.html");
-		} else {
-			PersistenceManager pm = MemberManager.dogetManager();
-			Query qry = pm.newQuery(UserLoginToken.class);
-			
-			token = UUID.randomUUID().toString();
-			ulog2.setToken(token);
-			resp.sendRedirect("/index.html");
-
 		}
 
-	}
+		else 
+		{	
+			for (Cookie c : cookies) 
+			{
+				if (c.getName().equals("token_id")) 
+				{
+					token = c.getValue();
+				}					
+			}					
+			
+			for (UserLoginToken ult : ulog)
+			{
+				if (ult.getToken().equals(token)) 
+				{
+					id = ult.getUserid();	
+					token = UUID.randomUUID().toString();
+					ult.setToken(token);
+					Cookie cookieToken = new Cookie("token_id", token);
+					cookieToken.setMaxAge(60*60*24*30);
+					resp.addCookie(cookieToken);
+					success = true;	
+				}				
+			}							
+		}					
+		if (success)
+		{
+			HttpSession session = req.getSession();
+			session.setAttribute("s_id",id);
+			resp.sendRedirect("/index.html");
+		}
+	}	
 }

@@ -77,34 +77,25 @@ public class LoginServlet extends HttpServlet {
 				cookie.setMaxAge(60 * 24 * 30 * 60);
 				resp.addCookie(cookie);
 				
-				Calendar cal = Calendar.getInstance();
-				String ntime = new String();
+				//Calendar cal = Calendar.getInstance();
+				//String ntime = new String();
 				
 				//현재 년도, 월, 일
 				
-				ntime = String.valueOf(cal.get(Calendar.YEAR));
+				/*ntime = String.valueOf(cal.get(Calendar.YEAR));
 				ntime += String.valueOf(cal.get(Calendar.MONTH)+1);
-				ntime += String.valueOf(cal.get(Calendar.DATE)+ 30);
+				ntime += String.valueOf(cal.get(Calendar.DATE)+ 30);*/
 				
 				
 				
-				expireData = ntime;
+				expireData =  Integer.toString(cookie.getMaxAge());	
 				UserLoginToken usertoken = new UserLoginToken(token, id, expireData);
 				PersistenceManager pm = MemberManager.dogetManager();
 				pm.makePersistent(usertoken);
 				
 				
 				
-				Query qry2 = MemberManager.dogetManager().newQuery(UserLoginToken.class);
-
-				List<UserLoginToken> ulog = (List<UserLoginToken>) qry2.execute(id);
-				qry2.setFilter("userid == idParam");
-				qry2.declareParameters("String idParam");
-				
-				UserLoginToken ulog2 = ulog.get(0);
-				Long key = ulog2.getKey();
-				
-				s.setAttribute("check_key", key);
+		
 				
 			}
 			
