@@ -20,8 +20,7 @@ public class Logout extends HttpServlet {
 
 		PersistenceManager pm = MemberManager.dogetManager();
 		Query qry = pm.newQuery(UserLoginToken.class);
-		List<UserLoginToken> userLoginToken = (List<UserLoginToken>) qry
-				.execute();
+		List<UserLoginToken> userLoginToken = (List<UserLoginToken>) qry.execute();
 
 		boolean success = false;
 

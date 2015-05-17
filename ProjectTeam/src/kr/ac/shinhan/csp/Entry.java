@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -28,13 +27,10 @@ public class Entry extends HttpServlet {
 		
 		
 		Cookie[] cookies = req.getCookies();
-		
-		if (cookies == null || cookies.length == 0) {
-			resp.sendRedirect("/login.html");
-		}
-
-		else 
-		{	
+		//resp.sendRedirect("/login.html");
+		resp.getWriter().println("<html>");
+		resp.getWriter().println("<body>");
+		if (cookies != null) {
 			for (Cookie c : cookies) 
 			{
 				if (c.getName().equals("token_id")) 
@@ -51,17 +47,21 @@ public class Entry extends HttpServlet {
 					token = UUID.randomUUID().toString();
 					ult.setToken(token);
 					Cookie cookieToken = new Cookie("token_id", token);
-					cookieToken.setMaxAge(60*60*24*30);
 					resp.addCookie(cookieToken);
 					success = true;	
-				}				
-			}							
-		}					
+				}
+			}
+		}
+		else {
+			resp.sendRedirect("/login.html");
+		}
 		if (success)
 		{
 			HttpSession session = req.getSession();
 			session.setAttribute("s_id",id);
 			resp.sendRedirect("/index.html");
 		}
+		resp.getWriter().println("</html>");
+		resp.getWriter().println("</body>");
 	}	
 }
